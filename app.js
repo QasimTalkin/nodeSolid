@@ -1,44 +1,24 @@
-let target = Math.floor(Math.random() * 100) + 1;
-let num;
-let tries = 0
-
-function isCloseToTarget(num) {
-return num === target;
-}
-
-do {
- num =  guessNumber();
-} while (!isCloseToTarget(num));
 
 
-function guessNumber() {
-  num = Math.floor(Math.random() * 100) + 1;
-  if (isCloseToTarget(num)) {
-    console.log(`You got it! in  ${tries} tries the target was ${target} `);
-  } else {
-    console.log(`You're  number ${num} not close enough`);
-  }
-  tries++;
-  return (num)
-} 
-
-/* we will now build many function to sort an array of numbers, add comments to each step and log the test results to the console */
-let testArray = [4,8, 42, 1, 23, 566,72, 22, 554, 6,232,0] // this is a test array of numbers
-
-function selectionSort (sampleArray) {
-  for (let i = 0; i < sampleArray.length; i++) {
-    let min = i;
-    for (let j = i + 1; j < sampleArray.length; j++) {
-      if (sampleArray[j] < sampleArray[min]) {
-        min = j;
-      }
-    }
-    if (min !== i) {
-      let temp = sampleArray[i];
-      sampleArray[i] = sampleArray[min];
-      sampleArray[min] = temp;
-    }
-  }
-  return sampleArray;
-
-}
+const tweets = [
+  { id: 1, text: 'Hello World' },
+  { id: 2, text: 'Hello Universe' },
+  { id: 3, text: 'Hello Galaxy' },
+  ];
+  
+  
+  function doThisOnIncomingData(incomingData, functionToSetOutgoingData) {
+    console.log("--------------------------------");
+    console.log(incomingData.contentType);
+    console.log("--------------------------------");
+    const tweet = tweets[incomingData.url.slice(incomingData.url.length-1)];
+    console.log("--------------------------------");
+    console.log(tweet);
+    console.log("--------------------------------");
+    functionToSetOutgoingData.end(JSON.stringify(tweet));
+  };
+  
+  
+  const http = require('http'); // require is a function that is used to import a module
+  const server = http.createServer(doThisOnIncomingData); // create a server and execute the logToConsole function
+  server.listen(3000); // listen to port 80

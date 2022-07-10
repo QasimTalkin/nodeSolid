@@ -124,12 +124,12 @@ JavaScript does three things (1 with c++s help)
   });
 ```
 
-# HTTPRequestObject
+# HTTPRequestObject & HTTPResPonseObject
 ```js 
 const tweets = [
-  { id: 1, text: 'Hello World' },
-  { id: 2, text: 'Hello Universe' },
-  { id: 3, text: 'Hello Galaxy' },
+{ id: 1, text: 'Hello World' },
+{ id: 2, text: 'Hello Universe' },
+{ id: 3, text: 'Hello Galaxy' },
 ];
 function doThisOnIncomingData(incomingData, functionToSetOutgoingData) {
   const tweet = tweets[incomingData.id];
@@ -137,5 +137,5 @@ function doThisOnIncomingData(incomingData, functionToSetOutgoingData) {
 }
 const http = require('http'); // require is a function that is used to import a module
 const server = http.createServer(doThisOnIncomingData); // create a server and execute the logToConsole function
-server.listen(80); // listen to port 80
+server.listen(3000); // listen to port 80
 ```
