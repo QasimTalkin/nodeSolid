@@ -1,0 +1,21 @@
+{
+  "name": "nodesolid",
+  "version": "1.0.0",
+  "description": "--- marp: true theme: gaia style: |   section.lead h1 {   text-align: center;   }   section.middle li{   text-align: center;   } --- <!-- headingDivider: 2 --> <!-- theme: gaia class: lead --> # Node-Solid : Solidify Node Skills  Executing Node sNode API Strems Asycn Node",
+  "main": "app.js",
+  "dev":"nodemon app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QasimTalkin/nodeSolid.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QasimTalkin/nodeSolid/issues"
+  },
+  "homepage": "https://github.com/QasimTalkin/nodeSolid#readme"
+}
