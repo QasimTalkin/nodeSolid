@@ -139,3 +139,81 @@ const http = require('http'); // require is a function that is used to import a 
 const server = http.createServer(doThisOnIncomingData); // create a server and execute the logToConsole function
 server.listen(3000); // listen to port 80
 ```
+
+# Error Handling in Node
+* `try` - is a block of code that we want to try to run
+* `catch` - is a block of code that we want to run if the try block fails
+we will change our function `doThisOnIncomingData` only when there is a `request` coming in from the client
+* `server.on` - is a method that we can use to listen to a certain event
+* events like 
+  * `request` - is a event that is fired when a request is coming in from the client
+  * `clientError` - is a event that is fired when there is an error with the client
+
+# error handling code
+```js
+const tweets = [
+{ id: 1, text: 'Hello World' },
+{ id: 2, text: 'Hello Universe' },
+{ id: 3, text: 'Hello Galaxy' },
+];
+function doThisOnIncomingData(incomingData, functionToSetOutgoingData) {
+  const tweet = tweets[incomingData.id];
+  functionToSetOutgoingData(tweet);
+}
+const http = require('http'); // require is a function that is used to import a module
+const server = http.createServer();
+server.on('request', (req, res) => {
+  try {
+    doThisOnIncomingData(req, res);
+  } catch (error) {
+    res.statusCode = 500;
+    res.end('Something went wrong');
+  }
+});
+
+server.on('clientError', (err, socket) => {
+  socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
+}
+server.listen(3000); // listen to port 80
+```
+
+# folder structure 
+* `/` - is the root folder
+* `./` - is the current folder
+* `./public/img` - current folder and then the folder called public and then the folder called img
+* `../` - is the parent folder
+* `../../` - is the grandparent folder
+
+# JSON object 
+* JSON is a data format that is used to store data in a file
+* `JSON.stringify` - is a method that we can use to convert a JS object to a JSON string
+* `JSON.parse` - is a method that we can use to convert a JSON string to a JS object
+```js
+// json object 
+const jsonObject = {
+  name: 'John',
+  age: 30,
+  isMarried: false,
+};
+// convert json object to a string
+const jsonString = JSON.stringify(jsonObject);
+console.log(jsonString); // {"name":"John","age":30,"isMarried":false}
+```
+
+# the FS module
+* `fs` - is a module that we can use to read and write files
+* `fs.readFile` - is a method that we can use to read a file
+* `fs.readFileSync` - is a method that we can use to read a file synchronously
+
+# example of reading tweets.json and writing to output.html
+```js
+const fs = require('fs'); // require is a function that is used to import a module
+const tweets = JSON.parse(fs.readFileSync('tweets.json')); // read the file and convert the data to a JS object
+const html = tweets.map(tweet => `<li>${tweet.text}</li>`).join(''); // create an array of HTML elements and join them together
+fs.writeFileSync('output.html', `<ul>${html}</ul>`); // write the data to a file
+```
+
+# Callback Stack, Callback Queue, Event Loop
+* call Stack - Js keeps track of the functions that are being called and when they are called, whenever a function is called, it is added to the call stack
+* call queue - any function that is delayed from running are added to the call back queue, when the background tasks are done, the functions in the call back queue are called
+* Event Loop - Determines what function/code to run next from the queue 
