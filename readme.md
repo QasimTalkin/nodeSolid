@@ -1,5 +1,5 @@
 ---
-marp: true
+marp: false
 theme: gaia
 style: |
   section.lead h1 {
@@ -152,10 +152,7 @@ we will change our function `doThisOnIncomingData` only when there is a `request
 # error handling code
 ```js
 const tweets = [
-{ id: 1, text: 'Hello World' },
-{ id: 2, text: 'Hello Universe' },
-{ id: 3, text: 'Hello Galaxy' },
-];
+{ id: 1, text: 'Hello World' },{ id: 2, text: 'Hello Universe' },{ id: 3, text: 'Hello Galaxy' },];
 function doThisOnIncomingData(incomingData, functionToSetOutgoingData) {
   const tweet = tweets[incomingData.id];
   functionToSetOutgoingData(tweet);
@@ -170,7 +167,6 @@ server.on('request', (req, res) => {
     res.end('Something went wrong');
   }
 });
-
 server.on('clientError', (err, socket) => {
   socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
 }
@@ -217,3 +213,18 @@ fs.writeFileSync('output.html', `<ul>${html}</ul>`); // write the data to a file
 * call Stack - Js keeps track of the functions that are being called and when they are called, whenever a function is called, it is added to the call stack
 * call queue - any function that is delayed from running are added to the call back queue, when the background tasks are done, the functions in the call back queue are called
 * Event Loop - Determines what function/code to run next from the queue 
+
+# Node directory access
+* `__dirname` - is a variable that is set to the absolute path of the current directory
+* `__filename` - is a variable that is set to the absolute path of the current file
+* `process.cwd()` - is a method that is used to get the current working directory
+* `process.chdir()` - is a method that is used to change the current working directory
+* `process.env` - is a variable that is set to the environment variables of the current process
+* `process.exit()` - is a method that is used to exit the process
+
+# node response methods
+* `res.writeHead` - is a method that is used to set the headers of the response
+* `res.sendFile` - is a method that is used to send a file to the client
+* `res.json` - is a method that is used to send a JSON object to the client
+* `res.send` - is a method that is used to send a string to the client
+* `res.end` - is a method that is used to end the response
